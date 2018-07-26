@@ -12,12 +12,12 @@ void loop() {
 	//format: stx 0EPH__CHXXXPXXXX?? etx
 	//Channel: 0-399
 	//20.0[kPa]-800.0[kPa]
-    //Set channel 100 to 400.0[kPa]
+    //Set channel 1 to 400.0[kPa]
 
 	for(int i=0;i<4;i++){
 		int pressure = (i+1)*100;
 		String pressure_string = String(pressure);
-		String base_command = "0EPH  CH100P";
+		String base_command = "0EPH  CH001P";
 		String p = base_command+pressure_string;
 		// String p = "4000";  		
 		// String p = "04DI  ";  //Test command
