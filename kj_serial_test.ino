@@ -12,11 +12,18 @@ void loop() {
 	//format: stx 0EPH__CHXXXPXXXX?? etx
 	//Channel: 0-399
 	//20.0[kPa]-800.0[kPa]
+    //Set channel 100 to 400.0[kPa]
 
-	String p = "0EPH  CH100P4000";  //Set channel 100 to 400.0[kPa]
-	// String p = "04DI  ";  //Test command
-	sendMessageBytes(p);
-	delay(1000);
+	for(int i=0;i<4;i++){
+		int pressure = (i+1)*100;
+		String pressure_string = String(pressure);
+		String base_command = "0EPH  CH100P";
+		String p = base_command+pressure_string;
+		// String p = "4000";  		
+		// String p = "04DI  ";  //Test command
+		sendMessageBytes(p);
+		delay(1000);
+	}
 }
 
 void sendMessageBytes(String command_and_data){
