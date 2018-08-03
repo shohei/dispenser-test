@@ -33,7 +33,7 @@ void loop() {
 		String base_command = "0EPH  CH001P";
 		String p = base_command+pressure_string;
 		sendMessageBytes(p);
-		delay(1000);
+		delay(10);
 	}
 	
 	// delay(1000);
@@ -58,26 +58,12 @@ void sendMessageBytes(String command_and_data){
 	sprintf(lbyteChar,"%x",lbyte);
 
 	mySerial.write(ENQ);
-	// Serial.println(buf);
-	//Here we send a message
-	//STX
+	delayMicroseconds(100);
     mySerial.write(STX); 
-    // mySerial.write(STX); 
-    // Serial3.write(STX); 
-	//Payload
     mySerial.write(buf,string_length); //do not send null terminator
-    // mySerial.write(buf,string_length); //do not send null terminator
-    // Serial3.write(buf,string_length); //do not send null terminator
-    //Checksum
-	mySerial.print(ubyteChar[0]);
-	mySerial.print(lbyteChar[0]);
-	// mySerial.write(ubyte);
-	// mySerial.write(lbyte);
-	// Serial3.write(ubyte);
-	// Serial3.write(lbyte);
-	//ETX
+  	mySerial.print(ubyteChar[0]);
+  	mySerial.print(lbyteChar[0]);
     mySerial.write(ETX); 
-    // mySerial.write(ETX); 
-    // Serial3.write(ETX); 
+	delayMicroseconds(100);
 	mySerial.write(EOT);
 }
